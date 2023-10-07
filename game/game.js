@@ -256,11 +256,13 @@ function rr() {
     event.preventDefault();
     let chisloKart1 = document.getElementById("chisloKart");
     let chisloKart = parseInt(chisloKart1.innerHTML);
-    rr();
     if (chisloKart>21){
         alert("Нельзя, ты проиграл")
         let vzad = document.getElementById("vzad")
         vzad.disabled = true;
+    }
+    else{
+        rr();
     }
 })
 
