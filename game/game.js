@@ -1,3 +1,33 @@
+// Проверяем, поддерживает ли браузер функцию открытия на весь экран
+function toggleFullscreen() {
+    if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+      // Получаем DOM-элемент, который нужно открыть на весь экран
+      var element = document.documentElement;
+  
+      // Проверяем, какая функция открытия на весь экран поддерживается в текущем браузере
+      if (element.requestFullscreen) {
+        element.requestFullscreen().catch((err) => {
+          console.log(err);
+        });
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen().catch((err) => {
+          console.log(err);
+        });
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen().catch((err) => {
+          console.log(err);
+        });
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen().catch((err) => {
+          console.log(err);
+        });
+      }
+    }
+  }
+  
+  // Вызываем функцию открытия на весь экран при клике на страницу
+  document.addEventListener('click', toggleFullscreen);
+  
 let vzad = document.getElementById("vzad");
 let sebe = document.getElementById("emu");
 let edvoit = document.getElementById("ydvoit");
@@ -8,23 +38,67 @@ edvoit.disabled = true;
 // Создаем глобальный объект-словарь
 var karti = {};
 
-// Добавляем пары ключ-значение в словарь
+// Добавляем пары ключ-значение в словарь(Новый способ)
 
+karti["buba2"] = "2";
+karti["buba3"] = "3";
+karti["buba4"] = "4";
+karti["buba5"] = "5";
+karti["buba6"] = "6";
+karti["buba7"] = "7";
+karti["buba8"] = "8";
+karti["buba9"] = "9";
+karti["buba10"] ="10";
+karti["bubaValet"] ="10";
+karti["bubaDama"] ="10";
+karti["bubaKorol"] ="10";
+karti["bubaTus"] = "1";
 
-karti["2"] = "buba2.png";
-karti["3"] = "buba3.png";
-karti["4"] = "buba4.png";
-karti["5"] = "buba5.png";
-karti["6"] = "buba6.png";
-karti["7"] = "buba7.png";
-karti["8"] = "buba8.png";
-karti["9"] = "buba9.png";
-karti["10"] ="buba10.png";
-karti["10"] ="bubaValet.png";
-karti["10"] ="bubaDama.png";
-karti["10"] ="bubaKorol.png";
-karti["1"] = "bubaTus.png";
+karti["krestia2"] = "2";
+karti["krestia3"] = "3";
+karti["krestia4"] = "4";
+karti["krestia5"] = "5";
+karti["krestia6"] = "6";
+karti["krestia7"] = "7";
+karti["krestia8"] = "8";
+karti["krestia9"] = "9";
+karti["krestia10"] ="10";
+karti["krestiaValet"] ="10";
+karti["krestiaDama"] ="10";
+karti["krestiaKorol"] ="10";
+karti["krestiaTus"] = "1";
 
+karti["pica2"] = "2";
+karti["pica3"] = "3";
+karti["pica4"] = "4";
+karti["pica5"] = "5";
+karti["pica6"] = "6";
+karti["pica7"] = "7";
+karti["pica8"] = "8";
+karti["pica9"] = "9";
+karti["pica10"] ="10";
+karti["picaValet"] ="10";
+karti["picaDama"] ="10";
+karti["picaKorol"] ="10";
+karti["picaTus"] = "1";
+
+karti["krestia2"] = "2";
+karti["krestia3"] = "3";
+karti["krestia4"] = "4";
+karti["krestia5"] = "5";
+karti["krestia6"] = "6";
+karti["krestia7"] = "7";
+karti["krestia8"] = "8";
+karti["krestia9"] = "9";
+karti["krestia10"] ="10";
+karti["krestiaValet"] ="10";
+karti["krestiaDama"] ="10";
+karti["krestiaKorol"] ="10";
+karti["krestiaTus"] = "1";
+
+//Используя длину словаря пандомно выбираем элемент, ключу добавляем расширение, а на экране к нужному числу добаляем значение ключа
+//Создаём список УЖЕ выбранных ключей
+//Идёт проверка если ново-выбранного при помощи рандома ключа в списке нет, то идёт его добавление по коментарию 99, после чего добавляем его в список.
 
 document.getElementById("b1").addEventListener("click", function(event) {
     event.preventDefault();
@@ -226,4 +300,3 @@ document.getElementById("emu").addEventListener("click", function(event) {
     
     callDiller();
 })
-
