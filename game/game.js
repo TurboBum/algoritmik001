@@ -183,39 +183,46 @@ document.getElementById("ybrat").addEventListener("click", function(event) {//У
 })
 
 
-document.getElementById("polojit").addEventListener("click", function(event) {//ПОЛОЖИТЬ ОЧКИ
-    event.preventDefault();
-    let coin1 = document.getElementById("chislo");
-    let coin = parseInt(coin1.innerHTML);
-    if (coin === 0 ){
-        alert("Нужна ставка")
-    }
-    else{let b1 = document.getElementById("b1");
-    let b5 = document.getElementById("b5");
-    let b10 = document.getElementById("b10");
-    let b100 = document.getElementById("b100");
-    let ybrat = document.getElementById("ybrat");
-    let polojit = document.getElementById("polojit")
-    let vzad = document.getElementById("vzad")
-    let sebe = document.getElementById("emu")
-    let edvoit = document.getElementById("ydvoit")
-    b1.disabled = true;
-    b5.disabled = true;
-    b10.disabled = true;
-    b100.disabled = true;
-    ybrat.disabled = true;
-    polojit.disabled = true;
-    vzad.disabled = false;
-    sebe.disabled = false;
-    edvoit.disabled = false;
-    rr()
-    setTimeout(() => {  rr(); }, 1000);
-    setTimeout(() => {  diller(); }, 1000);
-    setTimeout(() => {  diller(); }, 500);
-    
-}
-    
-})
+document.getElementById("polojit").addEventListener("click", function(event) {//ПОЛОЖИТЬ ОЧКИ 
+    event.preventDefault(); 
+    let coin1 = document.getElementById("chislo"); 
+    let coin = parseInt(coin1.innerHTML); 
+    if (coin === 0 ){ 
+      alert("Нужна ставка") 
+    } 
+    else{
+      let b1 = document.getElementById("b1"); 
+      let b5 = document.getElementById("b5"); 
+      let b10 = document.getElementById("b10"); 
+      let b100 = document.getElementById("b100"); 
+      let ybrat = document.getElementById("ybrat"); 
+      let polojit = document.getElementById("polojit") 
+      b1.disabled = true; 
+      b5.disabled = true; 
+      b10.disabled = true; 
+      b100.disabled = true; 
+      ybrat.disabled = true; 
+      polojit.disabled = true; 
+      rr() 
+      setTimeout(() => {  
+        rr(); 
+        setTimeout(() => {  
+          diller(); 
+          setTimeout(() => {  
+            diller(); 
+            setTimeout(() => {  
+              let vzad = document.getElementById("vzad") 
+              let sebe = document.getElementById("emu") 
+              let edvoit = document.getElementById("ydvoit") 
+              vzad.disabled = false; 
+              sebe.disabled = false; 
+              edvoit.disabled = false; 
+            }, 500);
+          }, 1000);
+        }, 1000);
+      }, 500);
+    }     
+  })
 
 
 
@@ -228,7 +235,7 @@ function keys_random(){
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-function rr() {
+ function rr() {//Рандомно выбирает для игрока карту(очки)
     let chislo = document.getElementById("chisloKart");
     let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
   
@@ -248,26 +255,19 @@ function rr() {
   }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
- 
-
-
-  document.getElementById("vzad").addEventListener("click", function(event) {//ПОПРОСИТЬ ЕЩЁ
+document.getElementById("vzad").addEventListener("click", function(event) {//ПОПРОСИТЬ ЕЩЁ
     event.preventDefault();
     console.log(spisok);
-    
     let chisloKart1 = document.getElementById("chisloKart");
     let chisloKart = parseInt(chisloKart1.innerHTML);
     if (chisloKart>21){
-        alert("Нельзя, ты проиграл")
         let vzad = document.getElementById("vzad")
         vzad.disabled = true;
+        alert("Нельзя, ты проиграл")
+        location.reload()
     }
     else{
-        rr();
+      rr();  
     }
 })
 
@@ -315,24 +315,34 @@ function diller() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 document.getElementById("emu").addEventListener("click", function(event) {
     event.preventDefault();
+    let vzad = document.getElementById("vzad") 
+    vzad.disabled = true; 
     let stavka1 = document.getElementById("chisloKart");
     let diller1 = document.getElementById("diller");
     let stavka = parseInt(stavka1.innerHTML);
     let dilleron = parseInt(diller1.innerHTML); 
-  
-    while (dilleron < stavka || dilleron < 21) {
-        diller()
+    if (stavka > 21){
+        alert("Вы проиграли123")
+        location.reload()
+        return 0
+    }
+    while (dilleron !=- 99) {
+        if (dilleron >= 22) {
+            alert("Я проиграл 001");
+            location.reload()
+            break
+          } else if (dilleron > stavka && dilleron <= 22) {
+            alert("Вы проиграли");
+            location.reload()
+            break
+          }
+          setTimeout(diller(), 1000);
             stavka1 = document.getElementById("chisloKart"); // Обновляем переменные
             diller1 = document.getElementById("diller");
             stavka = parseInt(stavka1.innerHTML);
             dilleron = parseInt(diller1.innerHTML); 
           }
-    console.log('eerere');
-    if (dilleron < 22) {
-        console.log('RRRRRRRR');
-      alert("Я проиграл");
-    } else if (dilleron < stavka && dilleron < 22) {
-        console.log('RRRRRRRR');
-      alert("Вы проиграли");
-    }
   });
+  //Вместо перезагрузки страници сделать разюлокировку заблокированных кнопок и на оборот.
+  //При случаи выигрыша умножить в 2 раза поставленные очки и перенести их в банк.
+  //ПРи проигрыши обнулить поставленные очки.
