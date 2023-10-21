@@ -1,32 +1,32 @@
 // Проверяем, поддерживает ли браузер функцию открытия на весь экран
-function toggleFullscreen() {
-    if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
-      // Получаем DOM-элемент, который нужно открыть на весь экран
-      var element = document.documentElement;
+// function toggleFullscreen() {
+//     if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+//       // Получаем DOM-элемент, который нужно открыть на весь экран
+//       var element = document.documentElement;
   
-      // Проверяем, какая функция открытия на весь экран поддерживается в текущем браузере
-      if (element.requestFullscreen) {
-        element.requestFullscreen().catch((err) => {
-          console.log(err);
-        });
-      } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen().catch((err) => {
-          console.log(err);
-        });
-      } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen().catch((err) => {
-          console.log(err);
-        });
-      } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen().catch((err) => {
-          console.log(err);
-        });
-      }
-    }
-  }
+//       // Проверяем, какая функция открытия на весь экран поддерживается в текущем браузере
+//       if (element.requestFullscreen) {
+//         element.requestFullscreen().catch((err) => {
+//           console.log(err);
+//         });
+//       } else if (element.webkitRequestFullscreen) {
+//         element.webkitRequestFullscreen().catch((err) => {
+//           console.log(err);
+//         });
+//       } else if (element.mozRequestFullScreen) {
+//         element.mozRequestFullScreen().catch((err) => {
+//           console.log(err);
+//         });
+//       } else if (element.msRequestFullscreen) {
+//         element.msRequestFullscreen().catch((err) => {
+//           console.log(err);
+//         });
+//       }
+//     }
+//   }
   
-  // Вызываем функцию открытия на весь экран при клике на страницу
-  document.addEventListener('click', toggleFullscreen);
+//   // Вызываем функцию открытия на весь экран при клике на страницу
+//   document.addEventListener('click', toggleFullscreen);
   
 let vzad = document.getElementById("vzad");
 let sebe = document.getElementById("emu");
@@ -54,53 +54,56 @@ karti["bubaDama"] ="10";
 karti["bubaKorol"] ="10";
 karti["bubaTus"] = "1";
 
-karti["krestia2"] = "2";
-karti["krestia3"] = "3";
-karti["krestia4"] = "4";
-karti["krestia5"] = "5";
-karti["krestia6"] = "6";
-karti["krestia7"] = "7";
-karti["krestia8"] = "8";
-karti["krestia9"] = "9";
-karti["krestia10"] ="10";
-karti["krestiaValet"] ="10";
-karti["krestiaDama"] ="10";
-karti["krestiaKorol"] ="10";
-karti["krestiaTus"] = "1";
+karti["cherva2"] = "2";
+karti["cherva3"] = "3";
+karti["cherva4"] = "4";
+karti["cherva5"] = "5";
+karti["cherva6"] = "6";
+karti["cherva7"] = "7";
+karti["cherva8"] = "8";
+karti["cherva9"] = "9";
+karti["cherva10"] ="10";
+karti["chervaValet"] ="10";
+karti["chervaDama"] ="10";
+karti["chervaKorol"] ="10";
+karti["chervaTus"] = "1";
 
-karti["pica2"] = "2";
-karti["pica3"] = "3";
-karti["pica4"] = "4";
-karti["pica5"] = "5";
-karti["pica6"] = "6";
-karti["pica7"] = "7";
-karti["pica8"] = "8";
-karti["pica9"] = "9";
-karti["pica10"] ="10";
-karti["picaValet"] ="10";
-karti["picaDama"] ="10";
-karti["picaKorol"] ="10";
-karti["picaTus"] = "1";
+karti["pika2"] = "2";
+karti["pika3"] = "3";
+karti["pika4"] = "4";
+karti["pika5"] = "5";
+karti["pika6"] = "6";
+karti["pika7"] = "7";
+karti["pika8"] = "8";
+karti["pika9"] = "9";
+karti["pika10"] ="10";
+karti["pikaValet"] ="10";
+karti["pikaDama"] ="10";
+karti["pikaKorol"] ="10";
+karti["pikaTus"] = "1";
 
-karti["krestia2"] = "2";
-karti["krestia3"] = "3";
-karti["krestia4"] = "4";
-karti["krestia5"] = "5";
-karti["krestia6"] = "6";
-karti["krestia7"] = "7";
-karti["krestia8"] = "8";
-karti["krestia9"] = "9";
-karti["krestia10"] ="10";
-karti["krestiaValet"] ="10";
-karti["krestiaDama"] ="10";
-karti["krestiaKorol"] ="10";
-karti["krestiaTus"] = "1";
+karti["krestja2"] = "2";
+karti["krestja3"] = "3";
+karti["krestja4"] = "4";
+karti["krestja5"] = "5";
+karti["krestja6"] = "6";
+karti["krestja7"] = "7";
+karti["krestja8"] = "8";
+karti["krestja9"] = "9";
+karti["krestja10"] ="10";
+karti["krestjaValet"] ="10";
+karti["krestjaDama"] ="10";
+karti["krestjaKorol"] ="10";
+karti["krestjaTus"] = "1";
 
-//Используя длину словаря пандомно выбираем элемент, ключу добавляем расширение, а на экране к нужному числу добаляем значение ключа
+let spisok = []
+
+
+//Используя длину словаря рандомно выбираем элемент, ключу добавляем расширение, а на экране к нужному числу добаляем значение ключа
 //Создаём список УЖЕ выбранных ключей
 //Идёт проверка если ново-выбранного при помощи рандома ключа в списке нет, то идёт его добавление по коментарию 99, после чего добавляем его в список.
 
-document.getElementById("b1").addEventListener("click", function(event) {
+document.getElementById("b1").addEventListener("click", function(event) { //ПРИБАВИТЬ 1 ОЧКО
     event.preventDefault();
     
     let nameInput = document.getElementById("coin");
@@ -116,7 +119,7 @@ document.getElementById("b1").addEventListener("click", function(event) {
         stavka.innerText = stavkachislo + 1;  // увеличиваем значение переменной stavka на 1
     }
 });
-document.getElementById("b5").addEventListener("click", function(event) {
+document.getElementById("b5").addEventListener("click", function(event) {//ПРИБАВИТЬ 5 ОЧКОВ
     event.preventDefault();
     
     let nameInput = document.getElementById("coin");
@@ -133,7 +136,7 @@ document.getElementById("b5").addEventListener("click", function(event) {
     }
 
 })
-document.getElementById("b10").addEventListener("click", function(event) {
+document.getElementById("b10").addEventListener("click", function(event) {//ПРИБАВИТЬ 10 ОЧКОВ
     event.preventDefault();
     
     let nameInput = document.getElementById("coin");
@@ -150,7 +153,7 @@ document.getElementById("b10").addEventListener("click", function(event) {
     }
 
 })
-document.getElementById("b100").addEventListener("click", function(event) {
+document.getElementById("b100").addEventListener("click", function(event) {//ПРИБАВИТЬ 100 ОЧКОВ
     event.preventDefault();
     
     let nameInput = document.getElementById("coin");
@@ -168,7 +171,7 @@ document.getElementById("b100").addEventListener("click", function(event) {
 
 })
 
-document.getElementById("ybrat").addEventListener("click", function(event) {
+document.getElementById("ybrat").addEventListener("click", function(event) {//УБРАТЬ ОЧКИ
     event.preventDefault();
     
     let nameInput = document.getElementById("coin");
@@ -180,7 +183,7 @@ document.getElementById("ybrat").addEventListener("click", function(event) {
 })
 
 
-document.getElementById("polojit").addEventListener("click", function(event) {
+document.getElementById("polojit").addEventListener("click", function(event) {//ПОЛОЖИТЬ ОЧКИ
     event.preventDefault();
     let coin1 = document.getElementById("chislo");
     let coin = parseInt(coin1.innerHTML);
@@ -214,46 +217,48 @@ document.getElementById("polojit").addEventListener("click", function(event) {
     
 })
 
+
+
+function keys_random(){
+    const karti_keys = Object.keys(karti);
+    //Рандомом выбираем элемент из словаря
+    const randomKey = karti_keys[Math.floor(Math.random() * karti_keys.length)];
+    return randomKey
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 function rr() {
     let chislo = document.getElementById("chisloKart");
     let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
   
-    // Создаем массив с возможными значениями карт в игре Блек-джек
-    let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 1];
+    let randomKey = keys_random();
   
-    // Генерируем индекс для выбора случайного значения из массива
-    let randomIndex = Math.floor(Math.random() * values.length);
+    while (spisok.includes(randomKey)) { // Проверяем, есть ли ключ в списке
+      randomKey = keys_random(); // Если есть, выбираем новый ключ
+    }
   
-    // Получаем случайное значение карты
-    let randomValue = values[randomIndex];
+    const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
+    console.log(value);
   
-    // Увеличиваем текущее число на значение карты
-    let newNumber = currentNumber + randomValue;
+    spisok.push(randomKey); // Добавляем ключ в список
   
+    let newNumber = currentNumber + value; // Складываем числа
     chislo.innerHTML = newNumber; // Обновляем число на странице
   }
-  function diller() {
-    let chislo = document.getElementById("diller");
-    let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
-  
-    // Создаем массив с возможными значениями карт в игре Блек-джек
-    let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 1];
-  
-    // Генерируем индекс для выбора случайного значения из массива
-    let randomIndex = Math.floor(Math.random() * values.length);
-  
-    // Получаем случайное значение карты
-    let randomValue = values[randomIndex];
-  
-    // Увеличиваем текущее число на значение карты
-    let newNumber = currentNumber + randomValue;
-  
-    chislo.innerHTML = newNumber; // Обновляем число на странице
-  }
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  document.getElementById("vzad").addEventListener("click", function(event) {
+
+
+
+ 
+
+
+  document.getElementById("vzad").addEventListener("click", function(event) {//ПОПРОСИТЬ ЕЩЁ
     event.preventDefault();
+    console.log(spisok);
+    
     let chisloKart1 = document.getElementById("chisloKart");
     let chisloKart = parseInt(chisloKart1.innerHTML);
     if (chisloKart>21){
@@ -267,7 +272,7 @@ function rr() {
 })
 
 
-document.getElementById("ydvoit").addEventListener("click", function(event) {
+document.getElementById("ydvoit").addEventListener("click", function(event) {//УДВОИТЬ ОЧКИ
     event.preventDefault();
     let stavka1 = document.getElementById("chislo");
     let coin1 = document.getElementById("coin");
@@ -284,21 +289,50 @@ document.getElementById("ydvoit").addEventListener("click", function(event) {
 })
 
 
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+function diller() {
+    let chislo = document.getElementById("diller");
+    let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
+  
+    let randomKey = keys_random();
+  
+    while (spisok.includes(randomKey)) { // Проверяем, есть ли ключ в списке
+      randomKey = keys_random(); // Если есть, выбираем новый ключ
+    }
+  
+    const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
+    console.log(value);
+  
+    spisok.push(randomKey); // Добавляем ключ в список
+  
+    let newNumber = currentNumber + value; // Складываем числа
+    chislo.innerHTML = newNumber; // Обновляем число на странице
+  }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 document.getElementById("emu").addEventListener("click", function(event) {
     event.preventDefault();
     let stavka1 = document.getElementById("chisloKart");
     let diller1 = document.getElementById("diller");
     let stavka = parseInt(stavka1.innerHTML);
-    let diller = parseInt(diller1.innerHTML); 
-    
-    function callDiller() {
-        if (diller < stavka) {
-            diller()
-            callDiller();
-        } else {
-            alert("Я проиграл");
-        }
+    let dilleron = parseInt(diller1.innerHTML); 
+  
+    while (dilleron < stavka || dilleron < 21) {
+        diller()
+            stavka1 = document.getElementById("chisloKart"); // Обновляем переменные
+            diller1 = document.getElementById("diller");
+            stavka = parseInt(stavka1.innerHTML);
+            dilleron = parseInt(diller1.innerHTML); 
+          }
+    console.log('eerere');
+    if (dilleron < 22) {
+        console.log('RRRRRRRR');
+      alert("Я проиграл");
+    } else if (dilleron < stavka && dilleron < 22) {
+        console.log('RRRRRRRR');
+      alert("Вы проиграли");
     }
-    
-    callDiller();
-})
+  });

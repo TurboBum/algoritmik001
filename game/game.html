@@ -6,15 +6,27 @@
     <link rel="stylesheet" href="game.css">   
 </head>
 <body>
-    <img src="../img/coin.png" style="position: fixed; left: var(--left, 0); bottom: var(--bottom, 0);" alt="coin">
-    <span id="coin"style="position: fixed; left: var(--left-span, 0); bottom: var(--bottom-span, 0);">1000</span>
+    <img src="../game/kart/oblojka.png" id="oblojka" style="position: fixed; top: var(--top, 0); right: var(--right, 0); bottom: var(--bottom, 0);" alt="oblojka">
+    <img src="../img/coin.png" id="fishki" style="position: fixed; top: var(--top, 0); right: var(--right, 0); bottom: var(--bottom, 0);" alt="coin">
+    <span id="coin"style="position: fixed; top: var(--top-span, 0); right: var(--right-span, 0); bottom: var(--bottom-span, 0);">1000</span>
     <script>
-        const img = document.querySelector("img");
-        img.style.setProperty("--left", "180px");
+        const oblojka = document.getElementById("oblojka");
+        oblojka.style.transform = `rotate(${-68}deg)`;
+        oblojka.style.setProperty("--right", "14%");
+        oblojka.style.setProperty("--top", "10%");
+        oblojka.style.setProperty("--bottom", "500px");
+        oblojka.style.height = '180px';
+        oblojka.style.width = '140px';
+        
+
+        const img = document.getElementById("fishki");
+        img.style.setProperty("--right", "83%");
+        img.style.setProperty("--top", "12%");
         img.style.setProperty("--bottom", "500px");
         
         const span = document.querySelector("span");
-        span.style.setProperty("--left-span", "238px");
+        span.style.setProperty("--right-span", "86%");
+        span.style.setProperty("--top-span", "19%");
         span.style.setProperty("--bottom-span", "560px");
     </script>
    <form id="form1" style="position: fixed; left: 0; bottom: 0;">
@@ -33,7 +45,7 @@
         <button  id="ydvoit" style="--clr:#39FF14"><span>Удвоить</span></button>
     </form>
     <form id="form3">
-        <span id=diller style=>0</span>
+        <span id=diller>0</span>
         <span id=chislo>0</span>
         <span id=chisloKart>0</span>
         

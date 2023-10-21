@@ -34,7 +34,7 @@ body {
 }
 
 #form3 > *:not(:last-child) {
-  margin-bottom: 300px;
+  margin-bottom: 120px;
 }
 
 button {
