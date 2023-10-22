@@ -103,6 +103,57 @@ let spisok = []
 //Создаём список УЖЕ выбранных ключей
 //Идёт проверка если ново-выбранного при помощи рандома ключа в списке нет, то идёт его добавление по коментарию 99, после чего добавляем его в список.
 
+
+
+
+
+//__________________________________________________
+function button(){//Функция по разблокировки заблокированного и наоборот
+    let b1 = document.getElementById("b1"); 
+    let b5 = document.getElementById("b5"); 
+    let b10 = document.getElementById("b10"); 
+    let b100 = document.getElementById("b100"); 
+    let ybrat = document.getElementById("ybrat"); 
+    let polojit = document.getElementById("polojit") 
+    b1.disabled = false; 
+    b5.disabled = false; 
+    b10.disabled = false; 
+    b100.disabled = false; 
+    ybrat.disabled = false; 
+    polojit.disabled = false; 
+    let vzad = document.getElementById("vzad") 
+    let sebe = document.getElementById("emu") 
+    let edvoit = document.getElementById("ydvoit") 
+    vzad.disabled = true; 
+    sebe.disabled = true; 
+    edvoit.disabled = true; 
+    spisok.length=0;//Обнулкеие массива
+}
+function Ochki_Zero(){
+    let chislo_kart = document.getElementById("chisloKart");
+    let chislo = document.getElementById("diller");
+    chislo.innerHTML = 0; // Обновляем число на странице
+    chislo_kart.innerHTML = 0; // Обновляем число на странице
+
+}
+function WIN0(){//Победные очки
+    let nameInput = document.getElementById("coin");
+    let stavka = document.getElementById("chislo");
+    let coin = parseInt(stavka.innerText);  // преобразуем значение поставленных очков
+    let coin_bank = parseInt(nameInput.innerText);  // преобразуем значение очкогв в банке
+    console.log(coin_bank + (coin*2));
+    nameInput.innerText = coin_bank + (coin*2);
+    stavka.innerText = 0;
+    Ochki_Zero()
+}
+function Over(){//Проигрышные очки очки
+    let stavka = document.getElementById("chislo");
+    stavka.innerText = 0;
+    Ochki_Zero()
+}
+//__________________________________________________
+//__________________________________________________
+
 document.getElementById("b1").addEventListener("click", function(event) { //ПРИБАВИТЬ 1 ОЧКО
     event.preventDefault();
     
@@ -254,6 +305,28 @@ function keys_random(){
     chislo.innerHTML = newNumber; // Обновляем число на странице
   }
 //////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+function diller() {
+    let chislo = document.getElementById("diller");
+    let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
+  
+    let randomKey = keys_random();
+  
+    while (spisok.includes(randomKey)) { // Проверяем, есть ли ключ в списке
+      randomKey = keys_random(); // Если есть, выбираем новый ключ
+    }
+  
+    const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
+    console.log(value);
+  
+    spisok.push(randomKey); // Добавляем ключ в список
+  
+    let newNumber = currentNumber + value; // Складываем числа
+    chislo.innerHTML = newNumber; // Обновляем число на странице
+  }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 document.getElementById("vzad").addEventListener("click", function(event) {//ПОПРОСИТЬ ЕЩЁ
     event.preventDefault();
@@ -264,7 +337,8 @@ document.getElementById("vzad").addEventListener("click", function(event) {//П�
         let vzad = document.getElementById("vzad")
         vzad.disabled = true;
         alert("Нельзя, ты проиграл")
-        location.reload()
+        button()
+        Over()
     }
     else{
       rr();  
@@ -288,31 +362,6 @@ document.getElementById("ydvoit").addEventListener("click", function(event) {//�
     }
 })
 
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-function diller() {
-    let chislo = document.getElementById("diller");
-    let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
-  
-    let randomKey = keys_random();
-  
-    while (spisok.includes(randomKey)) { // Проверяем, есть ли ключ в списке
-      randomKey = keys_random(); // Если есть, выбираем новый ключ
-    }
-  
-    const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
-    console.log(value);
-  
-    spisok.push(randomKey); // Добавляем ключ в список
-  
-    let newNumber = currentNumber + value; // Складываем числа
-    chislo.innerHTML = newNumber; // Обновляем число на странице
-  }
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 document.getElementById("emu").addEventListener("click", function(event) {
     event.preventDefault();
     let vzad = document.getElementById("vzad") 
@@ -323,26 +372,29 @@ document.getElementById("emu").addEventListener("click", function(event) {
     let dilleron = parseInt(diller1.innerHTML); 
     if (stavka > 21){
         alert("Вы проиграли123")
-        location.reload()
+        button()
+        Over()
         return 0
     }
-    while (dilleron !=- 99) {
-        if (dilleron >= 22) {
-            alert("Я проиграл 001");
-            location.reload()
-            break
-          } else if (dilleron > stavka && dilleron <= 22) {
-            alert("Вы проиграли");
-            location.reload()
-            break
-          }
-          setTimeout(diller(), 1000);
-            stavka1 = document.getElementById("chisloKart"); // Обновляем переменные
-            diller1 = document.getElementById("diller");
-            stavka = parseInt(stavka1.innerHTML);
-            dilleron = parseInt(diller1.innerHTML); 
-          }
-  });
-  //Вместо перезагрузки страници сделать разюлокировку заблокированных кнопок и на оборот.
-  //При случаи выигрыша умножить в 2 раза поставленные очки и перенести их в банк.
-  //ПРи проигрыши обнулить поставленные очки.
+    function executeDiller() {
+        diller();
+        stavka1 = document.getElementById("chisloKart"); // Обновляем переменные
+        diller1 = document.getElementById("diller");
+        stavka = parseInt(stavka1.innerHTML);
+        dilleron = parseInt(diller1.innerHTML);
+        if (dilleron != -99) {
+            if (dilleron >= 22) {
+                alert("Я проиграл 001");
+                button()
+                WIN0()
+            } else if (dilleron > stavka && dilleron <= 22) {
+                alert("Вы проиграли");
+                button()
+                Over()
+            } else {
+                setTimeout(executeDiller, 1000);
+            }
+        }
+    }
+    executeDiller();
+});
