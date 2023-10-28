@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-	background-image: url('D:/OSPanel/domains/blackDjak/algoritmik001/img/zastafka.jpg');
+	background-image: url('./img/zastafka.jpg');
 	background-size: cover;
 }
 .container {
@@ -124,7 +124,7 @@ h2 {
 }
 .signup-link a {
     font-size: 1em;
-    color: #0ef;
+    color: rgb(255, 0, 0);
     text-decoration: none;
     font-weight: 600;
 }

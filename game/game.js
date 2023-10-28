@@ -317,7 +317,7 @@ function diller() {
     }
   
     const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
-    console.log(value);
+    console.log(value,"Диллер");
   
     spisok.push(randomKey); // Добавляем ключ в список
   
@@ -377,16 +377,17 @@ document.getElementById("emu").addEventListener("click", function(event) {
         return 0
     }
     function executeDiller() {
-        diller();
+        diller()
         stavka1 = document.getElementById("chisloKart"); // Обновляем переменные
         diller1 = document.getElementById("diller");
         stavka = parseInt(stavka1.innerHTML);
         dilleron = parseInt(diller1.innerHTML);
-        if (dilleron != -99) {
             if (dilleron >= 22) {
-                alert("Я проиграл 001");
-                button()
+                console.log("eeeeeee",dilleron)
+                setTimeout(alert("Я приграл300"), 2000);
                 WIN0()
+                button()
+                
             } else if (dilleron > stavka && dilleron <= 22) {
                 alert("Вы проиграли");
                 button()
@@ -394,7 +395,6 @@ document.getElementById("emu").addEventListener("click", function(event) {
             } else {
                 setTimeout(executeDiller, 1000);
             }
-        }
     }
     executeDiller();
 });
