@@ -1,3 +1,7 @@
+const moneta = document.getElementById("coin");
+const chislo_coin = document.getElementById("chislo");
+const chislo_diller = document.getElementById("diller");
+const chislo_chisloKart = document.getElementById("chisloKart");
 // Проверяем, поддерживает ли браузер функцию открытия на весь экран
 // function toggleFullscreen() {
 //     if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
@@ -192,15 +196,15 @@ function button(){//Функция по разблокировки заблок�
     spisok.length=0;//Обнулкеие массива
 }
 function Ochki_Zero(){
-    let chislo_kart = document.getElementById("chisloKart");
-    let chislo = document.getElementById("diller");
+    let chislo_kart = chislo_chisloKart;
+    let chislo = chislo_diller;
     chislo.innerHTML = 0; // Обновляем число на странице
     chislo_kart.innerHTML = 0; // Обновляем число на странице
 
 }
 function WIN0(){//Победные очки
-    let nameInput = document.getElementById("coin");
-    let stavka = document.getElementById("chislo");
+    let nameInput = moneta;
+    let stavka = chislo_coin;
     let coin = parseInt(stavka.innerText);  // преобразуем значение поставленных очков
     let coin_bank = parseInt(nameInput.innerText);  // преобразуем значение очкогв в банке
     console.log(coin_bank + (coin*2));
@@ -209,7 +213,7 @@ function WIN0(){//Победные очки
     Ochki_Zero()
 }
 function Over(){//Проигрышные очки очки
-    let stavka = document.getElementById("chislo");
+    let stavka = chislo_coin;
     stavka.innerText = 0;
     Ochki_Zero()
 }
@@ -219,8 +223,8 @@ function Over(){//Проигрышные очки очки
 document.getElementById("b1").addEventListener("click", function(event) { //ПРИБАВИТЬ 1 ОЧКО
     event.preventDefault();
     
-    let nameInput = document.getElementById("coin");
-    let stavka = document.getElementById("chislo");
+    let nameInput =moneta;
+    let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
     let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
     coin = coin - 1;
@@ -235,8 +239,8 @@ document.getElementById("b1").addEventListener("click", function(event) { //ПР
 document.getElementById("b5").addEventListener("click", function(event) {//ПРИБАВИТЬ 5 ОЧКОВ
     event.preventDefault();
     
-    let nameInput = document.getElementById("coin");
-    let stavka = document.getElementById("chislo");
+    let nameInput = moneta;
+    let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
     let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
     coin = coin - 5;
@@ -252,8 +256,8 @@ document.getElementById("b5").addEventListener("click", function(event) {//ПР�
 document.getElementById("b10").addEventListener("click", function(event) {//ПРИБАВИТЬ 10 ОЧКОВ
     event.preventDefault();
     
-    let nameInput = document.getElementById("coin");
-    let stavka = document.getElementById("chislo");
+    let nameInput =moneta;
+    let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
     let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
     coin = coin - 10;
@@ -269,8 +273,8 @@ document.getElementById("b10").addEventListener("click", function(event) {//ПР
 document.getElementById("b100").addEventListener("click", function(event) {//ПРИБАВИТЬ 100 ОЧКОВ
     event.preventDefault();
     
-    let nameInput = document.getElementById("coin");
-    let stavka = document.getElementById("chislo");
+    let nameInput = moneta;
+    let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
     let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
     coin = coin - 100;
@@ -287,8 +291,8 @@ document.getElementById("b100").addEventListener("click", function(event) {//П�
 document.getElementById("ybrat").addEventListener("click", function(event) {//УБРАТЬ ОЧКИ
     event.preventDefault();
     
-    let nameInput = document.getElementById("coin");
-    let stavka = document.getElementById("chislo");
+    let nameInput = moneta;
+    let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
     let coin_chislo = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
     nameInput.innerText = coin_chislo + stavkachislo
@@ -309,7 +313,7 @@ document.getElementById("polojit").addEventListener("click", function(event) {//
 
 
 
-    let coin1 = document.getElementById("chislo"); 
+    let coin1 = chislo_coin; 
     let coin = parseInt(coin1.innerHTML); 
     if (coin === 0 ){ 
       alert("Нужна ставка") 
@@ -360,7 +364,7 @@ function keys_random(){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
  function rr() {//Рандомно выбирает для игрока карту(очки)
-    let chislo = document.getElementById("chisloKart");
+    let chislo = chislo_chisloKart;
     let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
   
     let randomKey = keys_random();
@@ -380,7 +384,7 @@ function keys_random(){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function diller() {
-    let chislo = document.getElementById("diller");
+    let chislo = chislo_diller;
     let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
   
     let randomKey = keys_random();
@@ -404,7 +408,7 @@ function diller() {
 document.getElementById("vzad").addEventListener("click", function(event) {//ПОПРОСИТЬ ЕЩЁ
     event.preventDefault();
     console.log(spisok);
-    let chisloKart1 = document.getElementById("chisloKart");
+    let chisloKart1 = chislo_chisloKart;
     let chisloKart = parseInt(chisloKart1.innerHTML);
     if (chisloKart>21){
         let vzad = document.getElementById("vzad")
@@ -421,7 +425,7 @@ document.getElementById("vzad").addEventListener("click", function(event) {//П�
 
 document.getElementById("ydvoit").addEventListener("click", function(event) {//УДВОИТЬ ОЧКИ
     event.preventDefault();
-    let stavka1 = document.getElementById("chislo");
+    let stavka1 = chislo_coin;
     let coin1 = document.getElementById("coin");
     let stavka = parseInt(stavka1.innerHTML);
     let coin = parseInt(coin1.innerHTML); 
@@ -439,8 +443,8 @@ document.getElementById("emu").addEventListener("click", function(event) {
     event.preventDefault();
     let vzad = document.getElementById("vzad") 
     vzad.disabled = true; 
-    let stavka1 = document.getElementById("chisloKart");
-    let diller1 = document.getElementById("diller");
+    let stavka1 = chislo_chisloKart;
+    let diller1 = chislo_diller;
     let stavka = parseInt(stavka1.innerHTML);
     let dilleron = parseInt(diller1.innerHTML); 
     if (stavka > 21){
@@ -451,8 +455,8 @@ document.getElementById("emu").addEventListener("click", function(event) {
     }
     function executeDiller() {
         diller();
-        stavka1 = document.getElementById("chisloKart"); // Обновляем переменные
-        diller1 = document.getElementById("diller");
+        stavka1 = chislo_chisloKart; // Обновляем переменные
+        diller1 = chislo_diller;
         stavka = parseInt(stavka1.innerHTML);
         dilleron = parseInt(diller1.innerHTML);
         if (dilleron != -99) {
