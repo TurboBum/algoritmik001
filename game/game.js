@@ -96,17 +96,79 @@ karti["krestjaDama"] ="10";
 karti["krestjaKorol"] ="10";
 karti["krestjaTus"] = "1";
 
+
+remove_img = []
+
+
+diller_top = 20
+
+function img_kart_diller(key) {
+    let x_y = document.getElementById("fishki").getBoundingClientRect();
+    img_x = x_y.top;
+    img_y = x_y.left;
+    console.log(img_x, img_y);
+    
+    var oImg = document.createElement("img");
+    oImg.setAttribute('src', 'kart/' + key + '.png');
+    remove_img.push(key + '.png');
+    oImg.setAttribute('alt', 'karta');
+    oImg.setAttribute('height', '150px');
+    oImg.setAttribute('width', '100px');
+    oImg.style.position = "absolute";
+    oImg.style.top = '110px';
+    oImg.style.right = '50px';
+    document.body.appendChild(oImg);
+    
+    setTimeout(function() {
+        oImg.style.top = '18%';
+        oImg.style.left = diller_top+'%';
+        diller_top = diller_top + 8
+    }, 1000);
+    
+}
+
+user_top = 20
+
+function img_kart_user(key) {
+    let x_y = document.getElementById("fishki").getBoundingClientRect();
+    img_x = x_y.top;
+    img_y = x_y.left;
+    console.log(img_x, img_y);
+    
+    var oImg = document.createElement("img");
+    oImg.setAttribute('src', 'kart/' + key + '.png');
+    remove_img.push(key + '.png');
+    oImg.setAttribute('alt', 'karta');
+    oImg.setAttribute('height', '150px');
+    oImg.setAttribute('width', '100px');
+    oImg.style.position = "absolute";
+    oImg.style.top = '110px';
+    oImg.style.right = '50px';
+    document.body.appendChild(oImg);
+    
+    setTimeout(function() {
+        oImg.style.top = '69%';
+        oImg.style.left = user_top+'%';
+        user_top = user_top + 8
+    }, 1000);
+    
+}
+
+
+
+
+
+
+
+
+
+
 let spisok = []
 
 
 //Используя длину словаря рандомно выбираем элемент, ключу добавляем расширение, а на экране к нужному числу добаляем значение ключа
 //Создаём список УЖЕ выбранных ключей
 //Идёт проверка если ново-выбранного при помощи рандома ключа в списке нет, то идёт его добавление по коментарию 99, после чего добавляем его в список.
-
-
-
-
-
 //__________________________________________________
 function button(){//Функция по разблокировки заблокированного и наоборот
     let b1 = document.getElementById("b1"); 
@@ -236,6 +298,17 @@ document.getElementById("ybrat").addEventListener("click", function(event) {//У
 
 document.getElementById("polojit").addEventListener("click", function(event) {//ПОЛОЖИТЬ ОЧКИ 
     event.preventDefault(); 
+    user_top = 20
+    diller_top = 20
+    for(let i = 0; i < remove_img.length; i++){
+        const image = document.querySelector(`img[src="kart/${remove_img[i]}"]`);
+        image.parentNode.removeChild(image);
+    }
+
+
+
+
+
     let coin1 = document.getElementById("chislo"); 
     let coin = parseInt(coin1.innerHTML); 
     if (coin === 0 ){ 
@@ -300,7 +373,7 @@ function keys_random(){
     console.log(value);
   
     spisok.push(randomKey); // Добавляем ключ в список
-  
+    img_kart_user(randomKey)
     let newNumber = currentNumber + value; // Складываем числа
     chislo.innerHTML = newNumber; // Обновляем число на странице
   }
@@ -317,10 +390,10 @@ function diller() {
     }
   
     const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
-    console.log(value,"Диллер");
+    console.log(value);
   
     spisok.push(randomKey); // Добавляем ключ в список
-  
+    img_kart_diller(randomKey)
     let newNumber = currentNumber + value; // Складываем числа
     chislo.innerHTML = newNumber; // Обновляем число на странице
   }
@@ -377,17 +450,16 @@ document.getElementById("emu").addEventListener("click", function(event) {
         return 0
     }
     function executeDiller() {
-        diller()
+        diller();
         stavka1 = document.getElementById("chisloKart"); // Обновляем переменные
         diller1 = document.getElementById("diller");
         stavka = parseInt(stavka1.innerHTML);
         dilleron = parseInt(diller1.innerHTML);
+        if (dilleron != -99) {
             if (dilleron >= 22) {
-                console.log("eeeeeee",dilleron)
-                setTimeout(alert("Я приграл300"), 2000);
-                WIN0()
+                alert("Я проиграл 001");
                 button()
-                
+                WIN0()
             } else if (dilleron > stavka && dilleron <= 22) {
                 alert("Вы проиграли");
                 button()
@@ -395,6 +467,7 @@ document.getElementById("emu").addEventListener("click", function(event) {
             } else {
                 setTimeout(executeDiller, 1000);
             }
+        }
     }
     executeDiller();
 });
