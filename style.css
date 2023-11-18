@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-	background-image: url('D:/OSPanel/domains/blackDjak/algoritmik001/img/zastafka.jpg');
+	background-image: url('./img/zastafka.jpg');
 	background-size: cover;
 }
 .container {

@@ -2,6 +2,15 @@ const moneta = document.getElementById("coin");
 const chislo_coin = document.getElementById("chislo");
 const chislo_diller = document.getElementById("diller");
 const chislo_chisloKart = document.getElementById("chisloKart");
+document.cookie = 'MONETA=1000; CHISLO=0; path=/; expires=99999999999999;';
+function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+ }
+ console.log( document.cookie );
+let a = getCookie('MONETA');
+console.log(a);
 // Проверяем, поддерживает ли браузер функцию открытия на весь экран
 // function toggleFullscreen() {
 //     if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
@@ -202,103 +211,70 @@ function Ochki_Zero(){
     chislo_kart.innerHTML = 0; // Обновляем число на странице
 
 }
-function WIN0(){//Победные очки
-    let nameInput = moneta;
-    let stavka = chislo_coin;
-    let coin = parseInt(stavka.innerText);  // преобразуем значение поставленных очков
-    let coin_bank = parseInt(nameInput.innerText);  // преобразуем значение очкогв в банке
-    console.log(coin_bank + (coin*2));
-    nameInput.innerText = coin_bank + (coin*2);
-    stavka.innerText = 0;
+async function WIN0(){//Победные очки
+    let nameInput = await parseInt(getCookie('MONETA'));
+    let stavka = await parseInt(getCookie('CHISLO'));
+    console.log(nameInput + (stavka*2));
+    document.cookie = 'MONETA='+ parseInt(nameInput + (stavka*2)) +'; path=/; expires=99999999999999;';
+    let Cokie = await getCookie('MONETA')
+    moneta.innerText = Cokie;
+    
+    chislo_coin.innerText = 0;
     Ochki_Zero()
 }
 function Over(){//Проигрышные очки очки
-    let stavka = chislo_coin;
-    stavka.innerText = 0;
+    
+    let stavka = parseInt(getCookie('CHISLO'));
+    chislo_coin.innerText = 0;
     Ochki_Zero()
 }
 //__________________________________________________
 //__________________________________________________
 
-document.getElementById("b1").addEventListener("click", function(event) { //ПРИБАВИТЬ 1 ОЧКО
-    event.preventDefault();
-    
-    let nameInput =moneta;
+
+function user_ochki(ochko){
+    let nameInput = getCookie('MONETA')
     let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
-    let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
-    coin = coin - 1;
-    console.log(karti["apple"]); // выведет "яблоко"
-    if (coin < 0) {
+    nameInput = nameInput - ochko;
+    if (nameInput < 0) {
         alert("Нельзя");
     } else {
-        nameInput.innerText = coin;
-        stavka.innerText = stavkachislo + 1;  // увеличиваем значение переменной stavka на 1
+        document.cookie = 'MONETA='+ nameInput +'; path=/; expires=99999999999999;';
+        moneta.innerText = nameInput;
+        stavka.innerText = stavkachislo + ochko;  // увеличиваем значение переменной stavka на ochko
     }
+}
+document.getElementById("b1").addEventListener("click", function(event) { //ПРИБАВИТЬ 1 ОЧКО
+    event.preventDefault();
+    user_ochki(1)
 });
 document.getElementById("b5").addEventListener("click", function(event) {//ПРИБАВИТЬ 5 ОЧКОВ
     event.preventDefault();
-    
-    let nameInput = moneta;
-    let stavka = chislo_coin;
-    let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
-    let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
-    coin = coin - 5;
-
-    if (coin < 0) {
-        alert("Нельзя");
-    } else {
-        nameInput.innerText = coin;
-        stavka.innerText = stavkachislo + 5;  // увеличиваем значение переменной stavka на 5
-    }
-
+    user_ochki(5)
 })
 document.getElementById("b10").addEventListener("click", function(event) {//ПРИБАВИТЬ 10 ОЧКОВ
     event.preventDefault();
-    
-    let nameInput =moneta;
-    let stavka = chislo_coin;
-    let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
-    let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
-    coin = coin - 10;
-
-    if (coin < 0) {
-        alert("Нельзя");
-    } else {
-        nameInput.innerText = coin;
-        stavka.innerText = stavkachislo + 10;  // увеличиваем значение переменной stavka на 10
-    }
-
+    user_ochki(10)
 })
 document.getElementById("b100").addEventListener("click", function(event) {//ПРИБАВИТЬ 100 ОЧКОВ
     event.preventDefault();
-    
-    let nameInput = moneta;
-    let stavka = chislo_coin;
-    let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
-    let coin = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
-    coin = coin - 100;
-
-    if (coin < 0) {
-        alert("Нельзя");
-    } else {
-        nameInput.innerText = coin;
-        stavka.innerText = stavkachislo + 100;  // увеличиваем значение переменной stavka на 1
-    }
-
+    user_ochki(100)
 })
 
 document.getElementById("ybrat").addEventListener("click", function(event) {//УБРАТЬ ОЧКИ
     event.preventDefault();
-    
-    let nameInput = moneta;
+
+    let nameInput = parseInt(getCookie('MONETA'));
     let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
-    let coin_chislo = parseInt(nameInput.innerText);  // преобразуем значение в числовой тип данных
-    nameInput.innerText = coin_chislo + stavkachislo
+    let integer = parseInt(nameInput + stavkachislo)
+    document.cookie = 'MONETA='+ integer +'; path=/; expires=99999999999999;';
+    let nameInputCookie = getCookie('MONETA');
+    console.log(nameInputCookie)
+    moneta.innerText = nameInputCookie;
     stavka.innerText = 0
 })
-
 
 document.getElementById("polojit").addEventListener("click", function(event) {//ПОЛОЖИТЬ ОЧКИ 
     event.preventDefault(); 
@@ -308,11 +284,6 @@ document.getElementById("polojit").addEventListener("click", function(event) {//
         const image = document.querySelector(`img[src="kart/${remove_img[i]}"]`);
         image.parentNode.removeChild(image);
     }
-
-
-
-
-
     let coin1 = chislo_coin; 
     let coin = parseInt(coin1.innerHTML); 
     if (coin === 0 ){ 
@@ -351,17 +322,12 @@ document.getElementById("polojit").addEventListener("click", function(event) {//
       }, 500);
     }     
   })
-
-
-
 function keys_random(){
     const karti_keys = Object.keys(karti);
     //Рандомом выбираем элемент из словаря
     const randomKey = karti_keys[Math.floor(Math.random() * karti_keys.length)];
     return randomKey
 }
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
  function rr() {//Рандомно выбирает для игрока карту(очки)
     let chislo = chislo_chisloKart;
@@ -402,9 +368,6 @@ function diller() {
     chislo.innerHTML = newNumber; // Обновляем число на странице
   }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 document.getElementById("vzad").addEventListener("click", function(event) {//ПОПРОСИТЬ ЕЩЁ
     event.preventDefault();
     console.log(spisok);
@@ -421,8 +384,6 @@ document.getElementById("vzad").addEventListener("click", function(event) {//П�
       rr();  
     }
 })
-
-
 document.getElementById("ydvoit").addEventListener("click", function(event) {//УДВОИТЬ ОЧКИ
     event.preventDefault();
     let stavka1 = chislo_coin;
