@@ -10,8 +10,30 @@ function getCookie(name) {
     if (parts.length == 2) return parts.pop().split(";").shift();
  }
  console.log( document.cookie );
-let a = getCookie('MONETA');
-console.log(a);
+
+ function showNotification(text) {
+    // Создаем элемент уведомления
+    const notification = document.createElement('div');
+    notification.className = 'notification'; // Применяем класс CSS для стилизации
+  
+    // Добавляем текст в уведомление
+    notification.textContent = text;
+  
+    // Добавляем уведомление на страницу
+    document.body.appendChild(notification);
+  
+    // Через некоторое время удаляем уведомление
+    setTimeout(() => {
+      notification.remove();
+      Ochki_Zero(); // Вызываем функцию Ochki_Zero() после удаления уведомления
+      const elements = document.getElementsByClassName("imgs");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    } 
+    }, 3400); // Указывается время в миллисекундах до удаления уведомления (в данном случае 3.4 секунды)
+  }
+
+
 // Проверяем, поддерживает ли браузер функцию открытия на весь экран
 // function toggleFullscreen() {
 //     if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
@@ -208,13 +230,14 @@ function button(){//Функция по разблокировки заблок�
     edvoit.disabled = true; 
     spisok.length=0;//Обнулкеие массива
 }
-function Ochki_Zero(){
+
+function Ochki_Zero() {
     let chislo_kart = chislo_chisloKart;
     let chislo = chislo_diller;
     chislo.innerHTML = 0; // Обновляем число на странице
     chislo_kart.innerHTML = 0; // Обновляем число на странице
+  }
 
-}
 async function WIN0(){//Победные очки
     let nameInput = await parseInt(getCookie('MONETA'));
     const chislo_coin1 = parseInt(localStorage.chislo_coin);
@@ -225,14 +248,14 @@ async function WIN0(){//Победные очки
     let Cokie = await getCookie('MONETA')
     moneta.innerText = Cokie;
     chislo_coin.innerText = 0;
-    await Ochki_Zero()
+    // await Ochki_Zero()
 }
 function Over(){//Проигрышные очки очки
 
     localStorage.chislo_coin = 0
     // let stavka = parseInt(getCookie('CHISLO'));
     chislo_coin.innerText =  localStorage.chislo_coin;
-    Ochki_Zero()
+    // Ochki_Zero()
 }
 //__________________________________________________
 //__________________________________________________
@@ -245,7 +268,8 @@ function user_ochki(ochko){
     chislo_coin1 = parseInt(localStorage.chislo_coin)
     localStorage.chislo_coin = parseInt(chislo_coin1 + ochko);
     if (nameInput < 0) {
-        alert("Нельзя");
+        showNotification("Нельзя");
+        // alert("Нельзя");
     } else {
         document.cookie = 'MONETA='+ nameInput +'; path=/; expires=99999999999999;';
         moneta.innerText = nameInput;
@@ -287,48 +311,45 @@ document.getElementById("polojit").addEventListener("click", function(event) {//
     event.preventDefault(); 
     user_top = 20
     diller_top = 20
-    const elements = document.getElementsByClassName("imgs");
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    } 
     let coin1 = chislo_coin; 
     let coin = parseInt(coin1.innerHTML); 
     if (coin === 0 ){ 
-      alert("Нужна ставка") 
+    showNotification("Нужна ставка");
+    // alert("Нужна ставка") 
     } 
     else{
-      let b1 = document.getElementById("b1"); 
-      let b5 = document.getElementById("b5"); 
-      let b10 = document.getElementById("b10"); 
-      let b100 = document.getElementById("b100"); 
-      let ybrat = document.getElementById("ybrat"); 
-      let polojit = document.getElementById("polojit") 
-      b1.disabled = true; 
-      b5.disabled = true; 
-      b10.disabled = true; 
-      b100.disabled = true; 
-      ybrat.disabled = true; 
-      polojit.disabled = true; 
-      rr() 
-      setTimeout(() => {  
+    let b1 = document.getElementById("b1"); 
+    let b5 = document.getElementById("b5"); 
+    let b10 = document.getElementById("b10"); 
+    let b100 = document.getElementById("b100"); 
+    let ybrat = document.getElementById("ybrat"); 
+    let polojit = document.getElementById("polojit") 
+    b1.disabled = true; 
+    b5.disabled = true; 
+    b10.disabled = true; 
+    b100.disabled = true; 
+    ybrat.disabled = true; 
+    polojit.disabled = true; 
+    rr() 
+    setTimeout(() => {  
         rr(); 
         setTimeout(() => {  
-          diller(); 
-          setTimeout(() => {  
+        diller(); 
+        setTimeout(() => {  
             diller(); 
             setTimeout(() => {  
-              let vzad = document.getElementById("vzad") 
-              let sebe = document.getElementById("emu") 
-              let edvoit = document.getElementById("ydvoit") 
-              vzad.disabled = false; 
-              sebe.disabled = false; 
-              edvoit.disabled = false; 
+            let vzad = document.getElementById("vzad") 
+            let sebe = document.getElementById("emu") 
+            let edvoit = document.getElementById("ydvoit") 
+            vzad.disabled = false; 
+            sebe.disabled = false; 
+            edvoit.disabled = false; 
             }, 500);
-          }, 1000);
         }, 1000);
-      }, 500);
+        }, 1000);
+    }, 500);
     }     
-  })
+})
 function keys_random(){
     const karti_keys = Object.keys(karti);
     //Рандомом выбираем элемент из словаря
@@ -336,44 +357,44 @@ function keys_random(){
     return randomKey
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
- function rr() {//Рандомно выбирает для игрока карту(очки)
+function rr() {//Рандомно выбирает для игрока карту(очки)
     let chislo = chislo_chisloKart;
     let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
-  
+
     let randomKey = keys_random();
-  
+
     while (spisok.includes(randomKey)) { // Проверяем, есть ли ключ в списке
       randomKey = keys_random(); // Если есть, выбираем новый ключ
     }
-  
+
     const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
     console.log(value);
-  
+
     spisok.push(randomKey); // Добавляем ключ в список
     img_kart_user(randomKey)
     let newNumber = currentNumber + value; // Складываем числа
     chislo.innerHTML = newNumber; // Обновляем число на странице
-  }
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function diller() {
     let chislo = chislo_diller;
     let currentNumber = parseInt(chislo.innerHTML); // Получаем текущее число
-  
+
     let randomKey = keys_random();
-  
+
     while (spisok.includes(randomKey)) { // Проверяем, есть ли ключ в списке
       randomKey = keys_random(); // Если есть, выбираем новый ключ
     }
-  
+
     const value = parseInt(karti[randomKey]); // Получаем числовое значение по ключу
     console.log(value);
-  
+
     spisok.push(randomKey); // Добавляем ключ в список
     img_kart_diller(randomKey)
     let newNumber = currentNumber + value; // Складываем числа
     chislo.innerHTML = newNumber; // Обновляем число на странице
-  }
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 document.getElementById("vzad").addEventListener("click", function(event) {//ПОПРОСИТЬ ЕЩЁ
     event.preventDefault();
@@ -383,12 +404,13 @@ document.getElementById("vzad").addEventListener("click", function(event) {//П�
     if (chisloKart>21){
         let vzad = document.getElementById("vzad")
         vzad.disabled = true;
-        alert("Нельзя, ты проиграл")
+        showNotification("Нельзя, ты проиграл");
+        // alert("Нельзя, ты проиграл")
         button()
         Over()
     }
     else{
-      rr();  
+    rr();  
     }
 })
 document.getElementById("ydvoit").addEventListener("click", function(event) {//УДВОИТЬ ОЧКИ
@@ -399,7 +421,8 @@ document.getElementById("ydvoit").addEventListener("click", function(event) {//�
     let coin = parseInt(coin1.innerHTML); 
     
     if (coin < stavka){
-        alert("Удвоение ставки невозможно.")
+        showNotification("Удвоение ставки невозможно.");
+        // alert("Удвоение ставки невозможно.")
     }
     else{
         stavka1.innerHTML = stavka * 2;
@@ -416,7 +439,8 @@ document.getElementById("emu").addEventListener("click", function(event) {
     let stavka = parseInt(stavka1.innerHTML);
     let dilleron = parseInt(diller1.innerHTML); 
     if (stavka > 21){
-        alert("Вы проиграли123")
+        showNotification("Вы проиграли123");
+        // alert("Вы проиграли123")
         button()
         Over()
         return 0
@@ -429,11 +453,13 @@ document.getElementById("emu").addEventListener("click", function(event) {
         dilleron = parseInt(diller1.innerHTML);
         if (dilleron != -99) {
             if (dilleron >= 22) {
-                alert("Я проиграл 001");
+                showNotification("Я проиграл 001");
+                // alert("Я проиграл 001");
                 button()
                 WIN0()
             } else if (dilleron > stavka && dilleron <= 22) {
-                alert("Вы проиграли");
+                showNotification("Вы проиграли");
+                // alert("Вы проиграли");
                 button()
                 Over()
             } else {
