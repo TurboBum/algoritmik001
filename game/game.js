@@ -2,6 +2,7 @@ const moneta = document.getElementById("coin");
 const chislo_coin = document.getElementById("chislo");
 const chislo_diller = document.getElementById("diller");
 const chislo_chisloKart = document.getElementById("chisloKart");
+localStorage.setItem('chislo_coin', 0);
 document.cookie = 'MONETA=1000; CHISLO=0; path=/; expires=99999999999999;';
 function getCookie(name) {
     let value = "; " + document.cookie;
@@ -124,12 +125,14 @@ function img_kart_diller(key) {
     var oImg = document.createElement("img");
     oImg.setAttribute('src', 'kart/' + key + '.png');
     remove_img.push(key + '.png');
+    oImg.setAttribute('class', 'imgs');
     oImg.setAttribute('alt', 'karta');
     oImg.setAttribute('height', '150px');
     oImg.setAttribute('width', '100px');
     oImg.style.position = "absolute";
     oImg.style.top = '110px';
     oImg.style.right = '50px';
+    oImg.style.сlass = "image";
     document.body.appendChild(oImg);
     
     setTimeout(function() {
@@ -151,6 +154,7 @@ function img_kart_user(key) {
     var oImg = document.createElement("img");
     oImg.setAttribute('src', 'kart/' + key + '.png');
     remove_img.push(key + '.png');
+    oImg.setAttribute('class', 'imgs');
     oImg.setAttribute('alt', 'karta');
     oImg.setAttribute('height', '150px');
     oImg.setAttribute('width', '100px');
@@ -213,19 +217,21 @@ function Ochki_Zero(){
 }
 async function WIN0(){//Победные очки
     let nameInput = await parseInt(getCookie('MONETA'));
-    let stavka = await parseInt(getCookie('CHISLO'));
-    console.log(nameInput + (stavka*2));
-    document.cookie = 'MONETA='+ parseInt(nameInput + (stavka*2)) +'; path=/; expires=99999999999999;';
+    const chislo_coin1 = parseInt(localStorage.chislo_coin);
+    console.log(chislo_coin1,chislo_coin1);
+    // console.log(nameInput + (chislo_coin1*2));
+    // console.log(nameInput,(chislo_coin1*2));
+    document.cookie = 'MONETA='+ parseInt(nameInput + (chislo_coin1*2)) +'; path=/; expires=99999999999999;';
     let Cokie = await getCookie('MONETA')
     moneta.innerText = Cokie;
-    
     chislo_coin.innerText = 0;
-    Ochki_Zero()
+    await Ochki_Zero()
 }
 function Over(){//Проигрышные очки очки
-    
-    let stavka = parseInt(getCookie('CHISLO'));
-    chislo_coin.innerText = 0;
+
+    localStorage.chislo_coin = 0
+    // let stavka = parseInt(getCookie('CHISLO'));
+    chislo_coin.innerText =  localStorage.chislo_coin;
     Ochki_Zero()
 }
 //__________________________________________________
@@ -235,14 +241,15 @@ function Over(){//Проигрышные очки очки
 function user_ochki(ochko){
     let nameInput = getCookie('MONETA')
     let stavka = chislo_coin;
-    let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
     nameInput = nameInput - ochko;
+    chislo_coin1 = parseInt(localStorage.chislo_coin)
+    localStorage.chislo_coin = parseInt(chislo_coin1 + ochko);
     if (nameInput < 0) {
         alert("Нельзя");
     } else {
         document.cookie = 'MONETA='+ nameInput +'; path=/; expires=99999999999999;';
         moneta.innerText = nameInput;
-        stavka.innerText = stavkachislo + ochko;  // увеличиваем значение переменной stavka на ochko
+        stavka.innerText = localStorage.chislo_coin;  // увеличиваем значение переменной stavka на ochko
     }
 }
 document.getElementById("b1").addEventListener("click", function(event) { //ПРИБАВИТЬ 1 ОЧКО
@@ -264,7 +271,7 @@ document.getElementById("b100").addEventListener("click", function(event) {//П�
 
 document.getElementById("ybrat").addEventListener("click", function(event) {//УБРАТЬ ОЧКИ
     event.preventDefault();
-
+    localStorage.chislo_coin = parseInt(0);
     let nameInput = parseInt(getCookie('MONETA'));
     let stavka = chislo_coin;
     let stavkachislo = parseInt(stavka.innerText);  // преобразуем значение в числовой тип данных
@@ -273,17 +280,17 @@ document.getElementById("ybrat").addEventListener("click", function(event) {//У
     let nameInputCookie = getCookie('MONETA');
     console.log(nameInputCookie)
     moneta.innerText = nameInputCookie;
-    stavka.innerText = 0
+    stavka.innerText = (localStorage.chislo_coin)
 })
 
 document.getElementById("polojit").addEventListener("click", function(event) {//ПОЛОЖИТЬ ОЧКИ 
     event.preventDefault(); 
     user_top = 20
     diller_top = 20
-    for(let i = 0; i < remove_img.length; i++){
-        const image = document.querySelector(`img[src="kart/${remove_img[i]}"]`);
-        image.parentNode.removeChild(image);
-    }
+    const elements = document.getElementsByClassName("imgs");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    } 
     let coin1 = chislo_coin; 
     let coin = parseInt(coin1.innerHTML); 
     if (coin === 0 ){ 
