@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Моя страница</title>
+    <link rel="stylesheet" href="game.css">   
+</head>
+<body>
+    <div class="notification-container"></div>
+    <img src="../game/kart/oblojka.png" id="oblojka" style="position: fixed; top: var(--top, 0); right: var(--right, 0); bottom: var(--bottom, 0);" alt="oblojka">
+    <div id="myDiv" style="position: relative; width: 60%; margin: 20% auto; text-align: center;">
+        <img src="../img/coin.png" id="fishki" style="display: block; position: fixed; margin: 0;" alt="coin">
+        <span id="coin" style="position: fixed; top: var(--top-span, 0); right: var(--right-span, 0); bottom: var(--bottom-span, 0);">1000</span>
+    </div>
+    
+    <script>
+        var span_myDiv = document.getElementById('coin');
+        var img_myDiv = document.getElementById('fishki');
+        
+        var spanTop = span_myDiv.offsetTop;
+        var spanLeft = span_myDiv.offsetLeft;
+        
+        img_myDiv.style.top = spanTop + 'px';
+        img_myDiv.style.left = spanLeft + 'px';
+    </script>
+    
+    
+    <script>
+        const oblojka = document.getElementById("oblojka");
+        oblojka.style.transform = `rotate(${-68}deg)`;
+        oblojka.style.setProperty("--right", "14%");
+        oblojka.style.setProperty("--top", "10%");
+        oblojka.style.setProperty("--bottom", "500px");
+        oblojka.style.height = '180px';
+        oblojka.style.width = '140px';
+        
+
+        const img = document.getElementById("fishki");
+        img.style.setProperty("--right", "83%");
+        img.style.setProperty("--top", "12%");
+        img.style.setProperty("--bottom", "500px");
+        
+        const span = document.querySelector("span");
+        span.style.setProperty("--right-span", "86%");
+        span.style.setProperty("--top-span", "19%");
+        span.style.setProperty("--bottom-span", "560px");
+    </script>
+   <form id="form1" style="position: fixed; left: 0; bottom: 0;">
+    <button id="b1" style="--clr:#8A2BE2"><span>1</span>></button>
+    <button id="b5" style="--clr:#8A2BE2"><span>5</span></button>
+    <button id="b10" style="--clr:#8A2BE2"><span>10</span></button>
+    <button id="b100" style="--clr:#8A2BE2"><span>100</span></button><br>
+    <button id="ybrat" style="--clr:#8A2BE2"><span>Убрать</span></button>
+    <button id="polojit" style="--clr:#8A2BE2"><span>Положить</span></button>
+</form>
+    
+    <form id="form2"style="position: fixed; right: 0; bottom: 0;">
+       
+        <button  id="vzad" style="--clr:#39FF14"><span>Ещё</span></button>
+        <button  id="emu" style="--clr:#39FF14"><span>Ему</span></button>
+        <button  id="ydvoit" style="--clr:#39FF14"><span>Удвоить</span></button>
+    </form>
+    <form id="form3">
+        <span id=diller>0</span>
+        <span id=chislo>0</span>
+        <span id=chisloKart>0</span>
+        
+</form>
+    <script src="game.js"></script>
+</body>
+</html>
